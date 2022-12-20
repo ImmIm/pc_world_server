@@ -20,7 +20,7 @@
   "main": "server.ts",
   "scripts": {
     "start:dev": "nodemon server.ts NODE_ENV=development",
-    "start:prod": "NODE_ENV=production nodemon server.ts",
+    "start:prod": "nodemon server.ts NODE_ENV=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kiryl Savich",
