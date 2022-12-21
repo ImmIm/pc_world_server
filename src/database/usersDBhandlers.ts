@@ -1,12 +1,5 @@
 import db from "./DBconnector";
-
-interface User {
-    firstname?: string;
-    lastName?: string;
-    email?: string;
-    password?: string;
-}
-
+import { User } from "../types/appType";
 
 
 
