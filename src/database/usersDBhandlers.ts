@@ -1,12 +1,14 @@
 import db from "./DBconnector";
 
-
 interface User {
     firstname?: string;
     lastName?: string;
     email?: string;
     password?: string;
 }
+
+
+
 
 export const userInfoQuery = (id: number) => {
     db.query(`SELECT * FROM users WHERE id = ${id}`, (error, results, fields) => {
