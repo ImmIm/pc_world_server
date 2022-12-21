@@ -1,11 +1,11 @@
-import express from 'express'
-import userRouter from './userRouter'
+import express from "express";
+import { protectMiddleware } from "../../middlewares/protectionMiddlewares";
+import userRouter from "./userRouter";
 
+const privateRoute = express.Router();
 
+privateRoute.use(protectMiddleware)
 
-const privateRoute = express.Router()
+privateRoute.use("user", userRouter);
 
-
-privateRoute.use('user', userRouter)
-
-export default privateRoute
+export default privateRoute;

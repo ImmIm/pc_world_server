@@ -1,18 +1,15 @@
-import express from 'express'
-import productsControllrer from '../../controllers/productsController'
+import express from "express";
+import productsControllrer from "../../controllers/productsController";
 
-const productsRouter = express.Router()
+const productsRouter = express.Router();
 
-productsRouter.use(express.json())
+productsRouter
+  .route("/:id")
+  .get(productsControllrer.getProductById)
+  .post(productsControllrer.createNewProduct)
+  .patch(productsControllrer.updateProductInfo)
+  .delete(productsControllrer.deleteProduct);
 
-productsRouter.get('/:id', productsControllrer.getProductById)
-productsRouter.post('/:id', productsControllrer.createNewProduct)
-productsRouter.patch('/:id', productsControllrer.updateProductInfo)
-productsRouter.delete('/:id', productsControllrer.deleteProduct)
+productsRouter.route("/").get(productsControllrer.getProducts);
 
-productsRouter.get('/', productsControllrer.getProducts)
-
-
-
-
-export default productsRouter
+export default productsRouter;
