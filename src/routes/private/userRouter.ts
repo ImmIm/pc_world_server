@@ -1,15 +1,15 @@
-import express from 'express'
-import userControllrer from '../../controllers/userController'
+import express from "express";
+import userControllrer from "../../controllers/userController";
 
-const userRouter = express.Router()
+const userRouter = express.Router();
 
-userRouter.use(express.json())
+userRouter.use(express.json());
 
-userRouter.get('/:id', userControllrer.getUserByID)
-userRouter.post('/:id', userControllrer.createNewUser)
-userRouter.patch('/:id', userControllrer.updateUserInfo)
-userRouter.delete('/:id', userControllrer.deleteUser)
+userRouter
+  .route("/:id")
+  .get(userControllrer.getUserByID)
+  .post(userControllrer.createNewUser)
+  .patch(userControllrer.updateUserInfo)
+  .delete(userControllrer.deleteUser);
 
-
-
-export default userRouter
+export default userRouter;
