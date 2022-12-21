@@ -1,7 +1,5 @@
-import { Request, Response } from "express";
 
-
-type ControllerHandler = (req: Request, res: Response) => void
+import { ControllerHandler } from "../types/appType";
 
 export const getUserByID: ControllerHandler = (req, res) => {
     res.status(200).send(`User with id: ${req.params.id}`)
