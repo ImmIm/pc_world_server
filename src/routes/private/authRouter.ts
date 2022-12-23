@@ -1,11 +1,12 @@
-import express from 'express'
+import express from 'express';
 
-const authRouter = express.Router()
+import { loginHandler } from '../../controllers/authController';
 
-authRouter.use(express.json())
+const authRouter = express.Router({mergeParams: true});
 
-authRouter.route('/login').post()
-authRouter.route('/signup').post()
+authRouter.route('/login').post(loginHandler);
+authRouter.route('/signup').post();
 
+// console.log(authRouter.stack);
 
-export default authRouter
+export default authRouter;

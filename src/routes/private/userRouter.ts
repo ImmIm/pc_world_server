@@ -12,4 +12,7 @@ userRouter
   .patch(userControllrer.updateUserInfo)
   .delete(userControllrer.deleteUser);
 
+
+
 export default userRouter;
+ 

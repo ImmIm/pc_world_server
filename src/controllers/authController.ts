@@ -1,18 +1,29 @@
 import { ControllerHandler } from "../types/appType";
 import { isUserValid } from "../database/authDBhandlers";
+import {db} from "../../server";
 
-export const login: ControllerHandler = (req, res) => {
+export const loginHandler: ControllerHandler = (req, res) => {
   if (!req.body.email || !req.body.password) {
     res.status(400).send({ status: "fail" });
   }
 
- isUserValid(req.body.email, req.body.password)
+  console.log(isUserValid(req.body.email));
+  
+
+
+ 
+  
+
+
+
 };
 
-
-
 const authController = {
-  login,
+  loginHandler,
 };
 
 export default authController;
+
+
+
+//ewrtfewrtgerwtg = user id

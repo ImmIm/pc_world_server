@@ -1,4 +1,4 @@
-import db from "./DBconnector";
+import {db} from "./../../server";
 import { User } from "../types/appType";
 
 
