@@ -30,6 +30,7 @@ app.use(
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
+app.use('/static', express.static('public'))
 
 app.use(express.json());
 // ROUTES
