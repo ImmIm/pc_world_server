@@ -59,7 +59,12 @@ export const signUpHandler: ControllerHandler = (req, res) => {
     return;
   }
 
-  if(req.body.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) === null || req.body.first_name.trim().length < 4 || req.body.last_name.trim().length < 4 || req.body.password.trim().length < 4){
+  if (
+    req.body.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) === null ||
+    req.body.first_name.trim().length < 4 ||
+    req.body.last_name.trim().length < 4 ||
+    req.body.password.trim().length < 4
+  ) {
     res.status(400).send({ status: 'fail', message: 'Incorrect data' });
     return;
   }
@@ -74,11 +79,12 @@ export const signUpHandler: ControllerHandler = (req, res) => {
     function (err, result) {
       if (err === null) {
         // @ts-ignore
-        req.session.user = { first_name: req.body.first_name,
+        req.session.user = {
+          first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
           password: req.body.password,
-        image: 'defaultUser.png'
+          image: 'defaultUser.png',
         };
         // @ts-ignore
         res.status(200).send({ status: 'succses', data: req.session.user });
@@ -93,10 +99,18 @@ export const signUpHandler: ControllerHandler = (req, res) => {
   );
 };
 
+export const logout: ControllerHandler = (req, res) => {
+  // @ts-ignore
+  req.session.user = null;
+  res.clearCookie('session-id', { sameSite: 'none', secure: true });
+  res.status(200).send({ status: 'succses' });
+};
+
 const authController = {
   loginHandler,
   loginAutomatic,
-  signUpHandler
+  signUpHandler,
+  logout,
 };
 
 export default authController;
