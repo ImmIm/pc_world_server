@@ -4,10 +4,9 @@ import { User } from "../types/appType";
 
 
 export const userInfoQuery = (id: number) => {
-    db.query(`SELECT * FROM users WHERE id = ?`,[id], (error, results, fields) => {
-        if (error) return false;
-        return results;
-    })
+    const re = db.execute(`SELECT * FROM users WHERE id = ?`,[id])
+    console.log(re);
+    
 }
 
 export const userCreationQuery = (user: User) => {
