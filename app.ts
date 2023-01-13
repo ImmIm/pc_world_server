@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import path from 'path';
+import categoryRouter from './src/routes/public/categoryRouter';
 
 const app = express();
 app.use(
@@ -37,5 +38,6 @@ app.use(express.json());
 // ROUTES
 app.use('/api/v1/private/auth', authRouter);
 app.use('/api/v1/public/products', productsRouter);
+app.use('/api/v1/public/categories', categoryRouter);
 
 export default app;

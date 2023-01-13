@@ -10,7 +10,8 @@ productsRouter
   .patch(productsControllrer.updateProductInfo)
   .delete(productsControllrer.deleteProduct);
 
-// TODO: pagination
+
 productsRouter.route('/').get(productsControllrer.getProducts);
+
 
 export default productsRouter;

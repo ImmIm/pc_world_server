@@ -62,6 +62,7 @@ export const deleteProduct: ControllerHandler = (req, res) => {
   res.status(200).send(req.body);
 };
 
+
 const productsController = {
   getFullProductById,
   getProducts,
