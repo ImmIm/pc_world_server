@@ -16,10 +16,27 @@ export type User = {
   password: string;
   phone: string;
   image: string;
-}
-
+};
 
 export type QueryError = {
-    status: 'fail';
-    message: string;
-}
+  status: 'fail';
+  message: string;
+};
+
+export type Product = {
+  id?: number;
+  product_name: string;
+  category_id?: number;
+  price: number;
+  producer_country: string;
+  producer_info: string;
+  main_picture: string;
+};
+
+export type CpuProduct = Product & {
+  product_id?: number;
+  frequency: number;
+  model: string;
+  socket: string;
+  n_cores: number;
+};
