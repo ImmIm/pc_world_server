@@ -40,3 +40,19 @@ export type CpuProduct = Product & {
   socket: string;
   n_cores: number;
 };
+
+export type CategoryName = {
+  Field: string;
+  Type: string;
+  Null: string;
+  Key: string;
+  Default: string | null;
+  Extra: string;
+};
+
+export type Category = {
+  id: number;
+  name: string;
+  category_picture: string;
+  category_description: string;
+};

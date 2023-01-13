@@ -8,6 +8,7 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import path from 'path';
 import categoryRouter from './src/routes/public/categoryRouter';
+import { filtersRouter } from './src/routes/public/filtersRouter';
 
 const app = express();
 app.use(
@@ -39,5 +40,6 @@ app.use(express.json());
 app.use('/api/v1/private/auth', authRouter);
 app.use('/api/v1/public/products', productsRouter);
 app.use('/api/v1/public/categories', categoryRouter);
+app.use('/api/v1/public/filters', filtersRouter);
 
 export default app;
