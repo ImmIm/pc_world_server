@@ -6,6 +6,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import path from 'path';
 
 const app = express();
 app.use(
@@ -30,7 +31,7 @@ app.use(
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
-app.use('/static', express.static('public'))
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(express.json());
 // ROUTES

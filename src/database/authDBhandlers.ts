@@ -1,5 +1,3 @@
-import { QueryError, User } from '../types/appType';
-import { isUser } from '../types/typeGuards';
 import { db } from './DBconfig';
 
 export const isUserExist = async (email: string, password: string) => {
