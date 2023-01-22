@@ -24,3 +24,6 @@ export function isString(string: any): string is string {
   return (string as string) !== undefined;
 }
 
+export function isStringArray(arr: any): arr is string[] {
+  return (arr as string[]) !== undefined;
+}

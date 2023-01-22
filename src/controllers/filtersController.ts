@@ -10,6 +10,8 @@ import {
   isString,
 } from '../types/typeGuards';
 
+
+
 const getFiltersForCategoryName: ControllerHandler = async (req, res) => {
   const categories = await getCategoriesNames();
   if (categories === false) {
@@ -80,6 +82,7 @@ const getFilterNames = async (category: string) => {
         el.Field !== 'product_id' &&
         el.Field !== 'main_picture'
       ) {
+
         filtersNames.push(el.Field);
       }
     }
@@ -96,7 +99,7 @@ const getAllFilters = async (options: string[], category: string) => {
       return false;
     }
     // @ts-ignore
-    result.push({ optionName: option, data: r.map((el) => el[option])});
+    result.push({ optionName: option, data: r.map((el) => el[option]) });
   }
 
   return result;
