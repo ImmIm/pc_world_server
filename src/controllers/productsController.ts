@@ -1,4 +1,6 @@
+import e from 'express';
 import {
+  fetchCategoryoptions,
   fetchFullProductInfo,
   fetchPackOfProducts,
 } from '../database/productsDBhandlers';
@@ -42,6 +44,27 @@ export const getProducts: ControllerHandler = async (req, res) => {
     return;
   }
 
+  const possibleOptions = await fetchCategoryoptions(category);
+
+  const filters: string[] = [];
+
+  for (const key of possibleOptions) {
+    if (
+      key !== 'id' &&
+      key !== 'product_name' &&
+      key !== 'main_picture' &&
+      key !== 'price' &&
+      key !== 'product_id' &&
+      key !== 'category_id'
+    ) {
+      filters.push(key);
+    }
+  }
+  const q = Object.keys(req.query);
+
+  //@ts-ignore
+  const found = q.some((r) => filters.includes(r));
+
   const currentCount =
     req.query.count === undefined ? 0 : Number(req.query.count);
 
@@ -49,14 +72,31 @@ export const getProducts: ControllerHandler = async (req, res) => {
     res.status(401).send({ status: 'fail', message: 'Incorrect params.' });
     return;
   }
-  const data = await fetchPackOfProducts(category, currentCount);
-// @ts-ignore
-  if (data.data === undefined) {
-    res.status(401).send({ status: 'fail', message: 'Incorrect params.' });
-    return;
+
+  if (found) {
+    const data = await fetchPackOfProducts(
+      category,
+      currentCount,
+      filters,
+      req.query
+    );
+    // @ts-ignore
+    if (data.data === undefined) {
+      res.status(404).send({ status: 'fail', message: 'Not found' });
+      return;
+    }
+    // @ts-ignore
+    res.status(200).send({ status: 'sucsess', data: data });
+  } else {
+    const data = await fetchPackOfProducts(category, currentCount);
+    // @ts-ignore
+    if (data.data === undefined) {
+      res.status(401).send({ status: 'fail', message: 'Incorrect params.' });
+      return;
+    }
+    // @ts-ignore
+    res.status(200).send({ status: 'sucsess', data: data });
   }
-// @ts-ignore
-  res.status(200).send({ status: 'sucsess', data: data });
 };
 
 export const createNewProduct: ControllerHandler = (req, res) => {
